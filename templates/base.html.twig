@@ -1,24 +1,248 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+    <title>
+        {% block title %}Pinboard{% endblock %}
+    </title>
 
-        {% set frankenphp_hot_reload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
-        {% if frankenphp_hot_reload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphp_hot_reload }}">
-        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
-        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
-        {% endif %}
-    </head>
-    <body>
+    {% block stylesheets %}
+        {{ importmap('app') }}
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+         ========================= -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+
+            <!-- LOGO -->
+            <a class="navbar-brand fw-bold fs-3"
+               href="{{ path('app_home') }}">
+                📌 Pinboard
+            </a>
+
+            <!-- MENU MOBILE -->
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- MENU -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <!-- ACCUEIL -->
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="{{ path('app_home') }}">
+                            Accueil
+                        </a>
+                    </li>
+
+                    {% if app.user %}
+
+                        <!-- CRÉER UN PIN -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ path('app_pin_create') }}">
+                                ➕ Créer un Pin
+                            </a>
+                        </li>
+
+                        <!-- MON PROFIL -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ path('app_profile') }}">
+                                👤 Mon profil
+                            </a>
+                        </li>
+
+                        <!-- DÉCONNEXION -->
+                        <li class="nav-item ms-lg-2">
+                            <a class="btn btn-danger"
+                               href="{{ path('app_logout') }}">
+                                Déconnexion
+                            </a>
+                        </li>
+
+                    {% else %}
+
+                        <!-- INSCRIPTION -->
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ path('app_register') }}">
+                                S'inscrire
+                            </a>
+                        </li>
+
+                        <!-- CONNEXION -->
+                        <li class="nav-item ms-lg-2">
+                            <a class="btn btn-primary"
+                               href="{{ path('app_login') }}">
+                                Se connecter
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         MESSAGES FLASH
+         ========================= -->
+
+    {% for message in app.flashes('success') %}
+        <div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show"
+                 role="alert">
+
+                ✅ {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Fermer">
+                </button>
+
+            </div>
+        </div>
+    {% endfor %}
+
+
+    {% for message in app.flashes('danger') %}
+        <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show"
+                 role="alert">
+
+                ⚠️ {{ message }}
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Fermer">
+                </button>
+
+            </div>
+        </div>
+    {% endfor %}
+
+
+    <!-- =========================
+         CONTENU DES PAGES
+         ========================= -->
+
+    <main>
         {% block body %}{% endblock %}
-    </body>
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="footer mt-5">
+
+        <div class="container py-5">
+
+            <div class="row align-items-center">
+
+                <!-- LOGO + DESCRIPTION -->
+                <div class="col-md-6 text-center text-md-start">
+
+                    <a href="{{ path('app_home') }}"
+                       class="footer-brand text-decoration-none">
+
+                        📌 Pinboard
+
+                    </a>
+
+                    <p class="footer-text mb-0 mt-2">
+                        Partagez et organisez vos idées simplement.
+                    </p>
+
+                </div>
+
+
+                <!-- LIENS -->
+                <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
+
+                    <a href="{{ path('app_home') }}"
+                       class="footer-link">
+                        Accueil
+                    </a>
+
+                    {% if app.user %}
+
+                        <a href="{{ path('app_pin_create') }}"
+                           class="footer-link">
+                            Créer un Pin
+                        </a>
+
+                        <a href="{{ path('app_profile') }}"
+                           class="footer-link">
+                            Mon profil
+                        </a>
+
+                    {% else %}
+
+                        <a href="{{ path('app_register') }}"
+                           class="footer-link">
+                            S'inscrire
+                        </a>
+
+                        <a href="{{ path('app_login') }}"
+                           class="footer-link">
+                            Se connecter
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- SÉPARATION -->
+            <hr class="footer-line">
+
+
+            <!-- COPYRIGHT -->
+            <div class="text-center">
+
+                <small class="footer-copy">
+                    © {{ "now"|date("Y") }}
+                    Pinboard — Tous droits réservés.
+                </small>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+         ========================= -->
+
+    {% block javascripts %}
+    {% endblock %}
+
+</body>
 </html>

@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Pins - Pinboard{% endblock %}
+
+{% block body %}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold mb-0">
+            Liste des Pins
+        </h1>
+
+        <a href="{{ path('app_pin_create') }}"
+           class="btn btn-primary">
+            ➕ Créer un Pin
+        </a>
+    </div>
+
+
+    {% if pins is empty %}
+
+        <div class="text-center py-5">
+
+            <div class="display-1">
+                📌
+            </div>
+
+            <h3 class="mt-3">
+                Aucun Pin pour le moment
+            </h3>
+
+            <p class="text-secondary">
+                Commencez par créer votre premier Pin.
+            </p>
+
+            <a href="{{ path('app_pin_create') }}"
+               class="btn btn-primary">
+                Créer un Pin
+            </a>
+
+        </div>
+
+    {% else %}
+
+        <div class="row g-4">
+
+            {% for pin in pins %}
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="card h-100 shadow-sm">
+
+                        {# IMAGE OU EMOJI QUI RENVOIE VERS SHOW #}
+                        <a href="{{ path('app_pin_show', {'id': pin.id}) }}"
+                           class="text-decoration-none text-dark">
+
+                            {% if pin.imageName %}
+
+                                <img
+                                    src="{{ asset('uploads/pins/' ~ pin.imageName) }}"
+                                    alt="{{ pin.title }}"
+                                    class="img-fluid d-block mx-auto"
+                                    style="width: 250px; height: 250px; object-fit: cover;"
+                                >
+
+                            {% else %}
+
+                                <div class="text-center py-5 display-4">
+                                    📌
+                                </div>
+
+                            {% endif %}
+
+                        </a>
+
+
+                        <div class="card-body">
+
+                            {# TITRE LIMITÉ À 30 CARACTÈRES #}
+                            <h2 class="h5 fw-bold">
+
+                                <a href="{{ path('app_pin_show', {'id': pin.id}) }}"
+                                   class="text-decoration-none text-dark">
+
+                                    {{ pin.title|length > 30
+                                        ? pin.title|slice(0, 30) ~ '...'
+                                        : pin.title
+                                    }}
+
+                                </a>
+
+                            </h2>
+
+
+                            {# DESCRIPTION SI ELLE EXISTE #}
+                            {% if pin.description %}
+
+                                <p class="text-secondary">
+                                    {{ pin.description }}
+                                </p>
+
+                            {% endif %}
+
+
+                            {# AUTEUR #}
+                            <p class="mb-2">
+                                <strong>Auteur :</strong>
+                                {{ pin.user.firstname }}
+                                {{ pin.user.lastname }}
+                            </p>
+
+
+                            {# DATE DE CRÉATION #}
+                            <p class="text-secondary small mb-3">
+                                {{ pin.createdAt|date('d/m/Y H:i') }}
+                            </p>
+
+
+                            {# BOUTONS #}
+                            <div class="d-flex flex-wrap gap-2">
+
+                                <a
+                                    href="{{ path('app_pin_show', {'id': pin.id}) }}"
+                                    class="btn btn-outline-primary btn-sm">
+                                    Voir
+                                </a>
+
+                                {% if pin.user == app.user %}
+
+                                    <a
+                                        href="{{ path('app_pin_edit', {'id': pin.id}) }}"
+                                        class="btn btn-outline-secondary btn-sm">
+                                        Modifier
+                                    </a>
+
+                                    <a
+                                        href="{{ path('app_pin_delete', {'id': pin.id}) }}"
+                                        class="btn btn-outline-danger btn-sm"
+                                        onclick="return confirm('Voulez-vous vraiment supprimer ce Pin ?');">
+                                        Supprimer
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

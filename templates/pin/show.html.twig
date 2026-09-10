@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ pin.title }} - Pinboard{% endblock %}
+
+{% block body %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+
+                {# IMAGE #}
+                {% if pin.imageName %}
+                    <img
+                        src="{{ asset('uploads/pins/' ~ pin.imageName) }}"
+                        alt="{{ pin.title }}"
+                        class="img-fluid w-100"
+                        style="max-height: 600px; object-fit: contain; background-color: #f8f7f4;"
+                    >
+                {% endif %}
+
+
+                <div class="card-body p-4 p-md-5">
+
+                    {# TITRE COMPLET #}
+                    <h1 class="fw-bold mb-4">
+                        {{ pin.title }}
+                    </h1>
+
+
+                    {# DESCRIPTION #}
+                    {% if pin.description %}
+                        <div class="mb-4">
+
+                            <h5 class="fw-bold">
+                                Description
+                            </h5>
+
+                            <p class="text-secondary mb-0">
+                                {{ pin.description }}
+                            </p>
+
+                        </div>
+                    {% endif %}
+
+
+                    {# AUTEUR #}
+                    <div class="mb-3">
+
+                        <strong>Auteur :</strong>
+                        {{ pin.user.firstname }}
+                        {{ pin.user.lastname }}
+
+                    </div>
+
+
+                    {# DATE DE CRÉATION #}
+                    <div class="mb-2">
+
+                        <strong>Date de création :</strong>
+                        {{ pin.createdAt|date('d/m/Y H:i') }}
+
+                    </div>
+
+
+                    {# DATE DE MODIFICATION #}
+                    <div class="mb-4">
+
+                        <strong>Date de modification :</strong>
+                        {{ pin.updatedAt|date('d/m/Y H:i') }}
+
+                    </div>
+
+
+                    {# BOUTONS #}
+                    <div class="d-flex flex-wrap gap-2">
+
+                        {# RETOUR #}
+                        <a
+                            href="{{ path('app_pin_index') }}"
+                            class="btn btn-outline-secondary">
+                            ← Retour aux Pins
+                        </a>
+
+
+                        {# BOUTONS PROPRIÉTAIRE #}
+                        {% if pin.user == app.user %}
+
+                            <a
+                                href="{{ path('app_pin_edit', {'id': pin.id}) }}"
+                                class="btn btn-primary">
+                                ✏️ Modifier
+                            </a>
+
+                            <a
+                                href="{{ path('app_pin_delete', {'id': pin.id}) }}"
+                                class="btn btn-outline-danger"
+                                onclick="return confirm('Voulez-vous vraiment supprimer ce Pin ?');">
+                                🗑 Supprimer
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

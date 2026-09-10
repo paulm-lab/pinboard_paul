@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un Pin - Pinboard{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row justify-content-center py-5">
+
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- TITRE -->
+                    <div class="text-center mb-4">
+
+                        <div class="fs-1 mb-2">
+                            📌
+                        </div>
+
+                        <h1 class="fw-bold">
+                            Créer un Pin
+                        </h1>
+
+                        <p class="text-secondary">
+                            Ajoutez une nouvelle idée à votre collection.
+                        </p>
+
+                    </div>
+
+
+                    <!-- FORMULAIRE -->
+                    <form method="post" enctype="multipart/form-data">
+
+                        <!-- TITRE -->
+                        <div class="mb-3">
+
+                            <label for="title"
+                                   class="form-label fw-semibold">
+                                Titre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                class="form-control form-control-lg"
+                                placeholder="Titre de votre Pin"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+                        <div class="mb-3">
+
+                            <label for="description"
+                                   class="form-label fw-semibold">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                class="form-control"
+                                rows="5"
+                                placeholder="Décrivez votre Pin..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- IMAGE -->
+                        <div class="mb-4">
+
+                            <label for="image"
+                                   class="form-label fw-semibold">
+                                Image
+                            </label>
+
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                class="form-control form-control-lg"
+                                accept="image/jpeg,image/png,image/webp"
+                                required
+                            >
+
+                            <div class="form-text">
+                                Formats acceptés : JPG, PNG et WEBP.
+                            </div>
+
+                        </div>
+
+
+                        <!-- BOUTON -->
+                        <div class="d-grid">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg">
+                                ➕ Créer le Pin
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- RETOUR -->
+                    <div class="text-center mt-4">
+
+                        <a href="{{ path('app_pin_index') }}"
+                           class="text-decoration-none">
+                            ← Retour à mes Pins
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

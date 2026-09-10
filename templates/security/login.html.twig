@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Pinboard{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row justify-content-center py-5">
+
+        <div class="col-md-7 col-lg-5">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- TITRE -->
+                    <div class="text-center mb-4">
+
+                        <div class="fs-1 mb-2">
+                            📌
+                        </div>
+
+                        <h1 class="fw-bold">
+                            Se connecter
+                        </h1>
+
+                        <p class="text-secondary">
+                            Connectez-vous à votre compte Pinboard.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ERREUR -->
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+
+                    <!-- UTILISATEUR CONNECTÉ -->
+                    {% if app.user %}
+
+                        <div class="alert alert-info">
+                            Vous êtes connecté en tant que
+                            <strong>{{ app.user.userIdentifier }}</strong>.
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- FORMULAIRE -->
+                    <form method="post">
+
+                        <!-- EMAIL -->
+                        <div class="mb-3">
+
+                            <label for="username"
+                                   class="form-label fw-semibold">
+                                Adresse email
+                            </label>
+
+                            <input
+                                type="email"
+                                value="{{ last_username }}"
+                                name="_username"
+                                id="username"
+                                class="form-control form-control-lg"
+                                autocomplete="email"
+                                placeholder="exemple@email.com"
+                                required
+                                autofocus
+                            >
+
+                        </div>
+
+
+                        <!-- MOT DE PASSE -->
+                        <div class="mb-4">
+
+                            <label for="password"
+                                   class="form-label fw-semibold">
+                                Mot de passe
+                            </label>
+
+                            <input
+                                type="password"
+                                name="_password"
+                                id="password"
+                                class="form-control form-control-lg"
+                                autocomplete="current-password"
+                                placeholder="Votre mot de passe"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- CSRF -->
+                        <input
+                            type="hidden"
+                            name="_csrf_token"
+                            data-controller="csrf-protection"
+                            value="{{ csrf_token('authenticate') }}"
+                        >
+
+
+                        <!-- BOUTON -->
+                        <div class="d-grid">
+
+                            <button
+                                class="btn btn-primary btn-lg"
+                                type="submit">
+                                Se connecter
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                    <!-- INSCRIPTION -->
+                    <div class="text-center mt-4">
+
+                        <span class="text-secondary">
+                            Vous n'avez pas encore de compte ?
+                        </span>
+
+                        <a href="{{ path('app_register') }}"
+                           class="fw-semibold text-decoration-none">
+                            S'inscrire
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

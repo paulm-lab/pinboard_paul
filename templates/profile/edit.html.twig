@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil - Pinboard{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row justify-content-center py-5">
+
+        <div class="col-md-8 col-lg-6">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <div class="text-center mb-4">
+
+                        <div class="fs-1 mb-2">
+                            👤
+                        </div>
+
+                        <h1 class="fw-bold">
+                            Modifier mon profil
+                        </h1>
+
+                        <p class="text-secondary">
+                            Modifiez vos informations personnelles.
+                        </p>
+
+                    </div>
+
+                    <form method="post">
+
+                        <div class="mb-3">
+                            <label for="firstname"
+                                   class="form-label fw-semibold">
+                                Prénom
+                            </label>
+
+                            <input
+                                type="text"
+                                id="firstname"
+                                name="firstname"
+                                class="form-control form-control-lg"
+                                value="{{ user.firstname }}"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="lastname"
+                                   class="form-label fw-semibold">
+                                Nom
+                            </label>
+
+                            <input
+                                type="text"
+                                id="lastname"
+                                name="lastname"
+                                class="form-control form-control-lg"
+                                value="{{ user.lastname }}"
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="imageName"
+                                   class="form-label fw-semibold">
+                                Nom de l'image
+                            </label>
+
+                            <input
+                                type="text"
+                                id="imageName"
+                                name="imageName"
+                                class="form-control form-control-lg"
+                                value="{{ user.imageName }}"
+                                placeholder="exemple.jpg"
+                            >
+
+                            <div class="form-text">
+                                Exemple : user1.jpg
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-lg">
+                                💾 Enregistrer
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_profile') }}"
+                           class="text-decoration-none">
+                            ← Retour au profil
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

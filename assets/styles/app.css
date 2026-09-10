@@ -1,3 +1,368 @@
+/* =========================================================
+   PINBOARD - DESIGN
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
 body {
-    background-color: skyblue;
+    margin: 0;
+    background-color: #f8f7f4;
+    color: #1f2937;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    min-height: 60vh;
+}
+
+a {
+    transition: color 0.2s ease;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.navbar-brand {
+    color: #1f2937 !important;
+    font-weight: 700;
+}
+
+.navbar-brand:hover {
+    color: #e60023 !important;
+}
+
+.navbar .nav-link {
+    color: #4b5563 !important;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #e60023 !important;
+}
+
+
+/* =========================================================
+   BOUTONS
+   ========================================================= */
+
+.btn-primary {
+    background-color: #e60023 !important;
+    border-color: #e60023 !important;
+    color: #ffffff !important;
+}
+
+.btn-primary:hover {
+    background-color: #c9001f !important;
+    border-color: #c9001f !important;
+}
+
+.btn-outline-primary {
+    color: #e60023 !important;
+    border-color: #e60023 !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #e60023 !important;
+    border-color: #e60023 !important;
+    color: #ffffff !important;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+/* =========================================================
+   PAGE D'ACCUEIL
+   ========================================================= */
+
+.hero {
+    padding: 90px 0 70px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #1f2937;
+}
+
+.hero h1 span {
+    color: #e60023;
+}
+
+.hero p {
+    color: #6b7280;
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+
+/* Grande carte à droite */
+
+.hero-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+.hero-card .icon {
+    font-size: 5rem;
+}
+
+
+/* =========================================================
+   CARTES FEATURES
+   ========================================================= */
+
+.feature-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 35px 25px;
+    height: 100%;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.10);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.feature-card h4 {
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.feature-card p {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CALL TO ACTION
+   ========================================================= */
+
+.cta {
+    background-color: #e60023;
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 55px 30px;
+    text-align: center;
+}
+
+.cta h2 {
+    font-weight: 700;
+}
+
+.cta p {
+    color: #ffffff;
+}
+
+.cta .btn {
+    background-color: #ffffff;
+    color: #e60023;
+    border: none;
+    font-weight: 600;
+}
+
+.cta .btn:hover {
+    background-color: #f3f4f6;
+    color: #c9001f;
+}
+
+
+/* =========================================================
+   CARTES BOOTSTRAP
+   ========================================================= */
+
+.card {
+    background-color: #ffffff;
+    border: none;
+}
+
+
+/* =========================================================
+   FORMULAIRES
+   ========================================================= */
+
+.form-label {
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    color: #1f2937;
+}
+
+.form-control:focus {
+    border-color: #e60023;
+    box-shadow: 0 0 0 0.2rem rgba(230, 0, 35, 0.15);
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+.form-text {
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   PINS
+   ========================================================= */
+
+.pin-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: #ffffff;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.pin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10) !important;
+}
+
+.pin-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.pin-card .card-title {
+    color: #1f2937;
+}
+
+.pin-card .card-text {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+    background-color: #1f2937;
+    color: #ffffff;
+    margin-top: 60px;
+}
+
+.footer-brand {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.footer-brand:hover {
+    color: #e60023;
+}
+
+.footer-text {
+    color: #d1d5db;
+}
+
+.footer-link {
+    color: #d1d5db;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    color: #e60023;
+}
+
+.footer-line {
+    border-color: rgba(255, 255, 255, 0.15);
+    margin: 30px 0 20px;
+}
+
+.footer-copy {
+    color: #9ca3af;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .hero {
+        padding: 60px 0 50px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero-card {
+        padding: 45px 25px;
+    }
+
+    .footer-link {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+
+@media (max-width: 576px) {
+
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero-card {
+        padding: 35px 20px;
+    }
+
+    .hero-card .icon {
+        font-size: 4rem;
+    }
+
+    .footer-link {
+        display: inline-block;
+        margin: 5px 8px;
+    }
 }

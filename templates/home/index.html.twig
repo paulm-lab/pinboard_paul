@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Pinboard{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="row align-items-center">
+
+            <div class="col-lg-7">
+
+                <h1>
+                    Bienvenue sur
+                    <span>Pinboard</span> 📌
+                </h1>
+
+                <p class="mt-4">
+                    Découvrez, partagez et organisez vos idées grâce
+                    aux Pins. Créez votre propre collection d'images
+                    et de contenus.
+                </p>
+
+                <div class="mt-4">
+
+                    {% if app.user %}
+
+                        <a href="{{ path('app_pin_create') }}"
+                           class="btn btn-primary btn-lg me-2">
+                            ➕ Créer un Pin
+                        </a>
+
+                        <a href="{{ path('app_pin_index') }}"
+                           class="btn btn-outline-primary btn-lg">
+                            Voir mes Pins
+                        </a>
+
+                    {% else %}
+
+                        <a href="{{ path('app_register') }}"
+                           class="btn btn-primary btn-lg me-2">
+                            Commencer maintenant
+                        </a>
+
+                        <a href="{{ path('app_login') }}"
+                           class="btn btn-outline-primary btn-lg">
+                            Se connecter
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-5 mt-5 mt-lg-0">
+
+                <div class="hero-card">
+
+                    <div class="icon">
+                        📌
+                    </div>
+
+                    <h2 class="fw-bold mt-3">
+                        Vos idées, vos Pins
+                    </h2>
+
+                    <p class="text-secondary">
+                        Gardez vos inspirations au même endroit.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="py-5">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📷
+                    </div>
+
+                    <h4>
+                        Ajoutez des images
+                    </h4>
+
+                    <p>
+                        Téléchargez facilement vos images
+                        et créez vos Pins.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📝
+                    </div>
+
+                    <h4>
+                        Organisez vos idées
+                    </h4>
+
+                    <p>
+                        Ajoutez un titre et une description
+                        à chaque Pin.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🔒
+                    </div>
+
+                    <h4>
+                        Votre espace personnel
+                    </h4>
+
+                    <p>
+                        Gérez uniquement vos propres Pins
+                        après connexion.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta my-5">
+
+        <h2 class="fw-bold">
+            Prêt à créer vos premiers Pins ?
+        </h2>
+
+        <p class="mt-3 mb-4">
+            Commencez à enregistrer vos inspirations dès maintenant.
+        </p>
+
+        {% if app.user %}
+
+            <a href="{{ path('app_pin_create') }}"
+               class="btn btn-lg px-4">
+                Créer mon premier Pin
+            </a>
+
+        {% else %}
+
+            <a href="{{ path('app_register') }}"
+               class="btn btn-lg px-4">
+                Créer un compte
+            </a>
+
+        {% endif %}
+
+    </section>
+
+</div>
+
+{% endblock %}
